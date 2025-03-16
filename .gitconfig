@@ -1,0 +1,101 @@
+[user]
+    name = Rene kuhm
+    email = renekuhm2@gmail.com
+
+[core]
+    editor = code --wait
+    excludesfile = ~/.gitignore_global
+    autocrlf = input
+    pager = delta
+
+[init]
+    defaultBranch = main
+
+[alias]
+    cz = !npx git-cz
+    st = status -sb
+    co = checkout
+    br = branch
+    ci = commit
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    undo = reset --soft HEAD^
+    clean-branches = !git branch --merged | grep -v '*' | xargs git branch -d
+    amend = commit --amend --no-edit
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    visual = !gitk
+
+[pull]
+    rebase = true
+
+[push]
+    default = current
+    autoSetupRemote = true
+
+[rebase]
+    autostash = true
+
+[fetch]
+    prune = true
+
+[color]
+    ui = auto
+
+[diff]
+    algorithm = patience
+    colorMoved = default
+
+[merge]
+    tool = vscode
+    conflictstyle = diff3
+
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+    trustExitCode = true
+
+[diff "bin"]
+    textconv = hexdump -v -C
+
+[credential]
+    helper = cache --timeout=3600
+
+[tag]
+    sort = -v:refname
+
+[branch]
+    autosetuprebase = always
+
+[status]
+    relativePaths = false
+    showUntrackedFiles = all
+
+[rerere]
+    enabled = true
+    autoUpdate = true
+
+[transfer]
+    fsckObjects = true
+
+[submodule]
+    recurse = true
+
+[url "git@github.com:"]
+    insteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+
+[url "git@gitlab.com:"]
+    insteadOf = "gl:"
+    pushInsteadOf = "gitlab:"
+    pushInsteadOf = "git://gitlab.com/"
+
+[delta]
+    navigate = true
+    light = false
+    line-numbers = true
+    side-by-side = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
